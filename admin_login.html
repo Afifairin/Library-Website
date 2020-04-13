@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+<title >Admin Login</title>
+{% endblock %}
+
+
+{% block body %} 
+<br>
+
+
+<form  action="/adminlogin" method="POST">
+  <div class="form-group">
+    <label for="username">Admin ID</label>
+    <input type="text" class="form-control" name ="username" id="username" aria-describedby="emailHelp" placeholder="Enter ID">
+    
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name ="password" id="password" placeholder="Password">
+  </div>
+ 
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+{% endblock %}
+
+
+
+

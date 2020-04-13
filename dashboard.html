@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}  
+
+<title>Dashboard</title>
+
+{% endblock %}
+
+
+{% block body %} 
+    <div class="booklist">
+        
+        
+        <h3 style="text-align: center; font-family: arial, sans-serif;">Admin</h3>
+        <br>
+        <form action="/dashboard" method="POST">
+            <tr>
+            <th><label for="title">Title of the Book</label></th>
+            <td><input type="text" name="title" id="title"></td>
+            <th><label for="author">Author Name</label></th>
+            <td><input type="text" name="author" id="author"></td>
+            <th><label for="count">Available (Copies)</label></th>
+            <td><input type="text" name="count" id="count"></td>
+            <td><input type="submit" value="Add New Book"></td>
+            </tr>
+        </form>
+
+        {% with messages = get_flashed_messages()%}
+            {% if messages %}
+                {% for message in messages%}
+                    <h4 style="font-family: arial, sans-serif;">{{message}}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    
+        <br>        
+        <table >
+            <tr>
+                <th>Book Title</th>
+                <th>Author</th>
+                <th>Available (Copies)</th>
+                <th>Last Updated</th>
+                <th>Reference ID</th>
+                <th>Action</th>
+            </tr>
+                        {% for book in books %}
+                <tr>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.count}}</td>
+                    <td>{{book.date_update}}</td>
+                    <td>{{book.id}}</td>
+                    <td>
+                        <a href="/delete/{{book.id}}">Delete</a>
+                        <br>
+                        <a href="/update/{{book.id}}">Update</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+     
+    
+    </div>
+
+{% endblock %}
