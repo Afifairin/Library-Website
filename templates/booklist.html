@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+
+{% block head %}  
+
+<title>Booklist</title>
+
+
+{% endblock %}
+
+{% block body %} 
+<div class="booklist">
+    <h3 style="text-align: center; font-family: arial, sans-serif;">Booklist</h3>
+    <br>
+    <table>
+        <tr>
+            <th>Book Title</th>
+            <th>Author</th>
+            <th>Available (Copies)</th>
+            <th>Last Updated</th>
+            
+            
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.count}}</td>
+                <td>{{book.date_update.date()}}</td>
+                
+            </tr>
+        {% endfor  %}
+    </table>
+{% endblock %}
