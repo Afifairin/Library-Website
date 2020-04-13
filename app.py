@@ -33,7 +33,7 @@ class Admin:
         self.username = username
         self.password = password
     def __repr__(self):
-        return f'<Admin: {self.username}>'
+        return f'<user: {self.username}>'
 
 users = []
 users.append(Admin(id=1, username='admin', password = 'password' )) 
@@ -105,7 +105,7 @@ def delete(id):
         db.session.commit()
         return redirect('/dashboard')   
     except:
-        return 'life is helll'
+        return 'Something went wrong'
 
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
@@ -123,7 +123,7 @@ def update(id):
             return redirect('/dashboard')
             
         except:
-            return "AAAAA......Quarentin"
+            return "Something went wrong"
             
     else:
         return render_template ('update.html', book= book_to_update)
@@ -202,9 +202,9 @@ def getcommand():
             for x in users: 
                 if (x.username == username) and (x.password == password):
                     if x.id == 1 :
-                        return jsonify({'username': username})
+                        return jsonify({'usertype': 'Admin'})
                     else:
-                        return jsonify({'username': username}) 
+                        return jsonify({'usertype': 'User'}) 
         
         elif command=="show_all":
             all_books= Booklist.query.order_by(Booklist.title).all()
